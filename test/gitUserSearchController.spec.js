@@ -31,8 +31,10 @@ beforeEach(inject(function($rootScope, $controller){
     ];
 
     it('should display search results', function() {
-      expect(scope.searchResult.items).toEqual(items)
-    })
-  })
+      scope.searchTerm = "hello";
+      scope.doSearch();
+      expect(scope.searchResult.items).toEqual(items);
+    });
+  });
 
 });
