@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul(ng-repeat="item in items")
+    li {{ item.name }}
+
+  form
+    input(type='text' ng-model="searchTerm" ng-change="doSearch()")
+    button(ng-click="doSearch()" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }")
+
+  ul(ng-repeat="user in searchResult.items")
+    li
+      {{user.login}}
+      img(ng-src="{{ user.avatar_url}}&s=50")
+
+
