@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <meta charset="UTF-8">
-  <title>title</title>
- </head>
- <body>
+<html ng-app="githubApp">
+  <head>
+    <meta charset="UTF-8">
+    <title>Github Anghular</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="githubController.js"></script>
+  </head>
 
- </body>
+  <body ng-controller="githubController">
+
+    <div>
+      <form class="form-horizontal">
+        <input type="text" ng-model="searchTerm" ng-change="doSearch()" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+      </form>
+      <ul class="list-group" ng-repeat="user in searchResult.items">
+        <li>
+          <img ng-src="{{user.avatar_url}}&s=50">
+          <a ng-href="{{user.html_url}}">{{user.login}}</a>
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>
